@@ -19,29 +19,29 @@ public class Tela {
 	static JLabel lLogo = new JLabel();
 	static ImageIcon imageIcone = new ImageIcon("Imagens\\iconeEnem.jpg");
 	ImageIcon imageLogo = new ImageIcon("Imagens\\logo.png");
-	static JButton btnComecar = new JButton("Começar");
-	static JButton btnRecomecar = new JButton("Recomeçar");
+	static JButton btnComecar = new JButton("ComeÃ§ar");
+	static JButton btnRecomecar = new JButton("RecomeÃ§ar");
 	
 	
 	static JPanel painelMateria = new JPanel();
 	static JLabel lEscritaMateria = new JLabel("Selecione as Provas Desejadas:");
-	static JCheckBox checkBoxCienciasHumanas = new JCheckBox("Ciências Humanas e suas Tecnologias");
-	static JCheckBox checkBoxCienciasDaNatureza = new JCheckBox("Ciências da Natureza e suas Tecnologias");
-	static JCheckBox checkBoxLinguagensECodigos = new JCheckBox("Linguagens, Códigos e suas Tecnologias");
-	static JCheckBox checkBoxMatematica = new JCheckBox("Matemática e suas Tecnologias");
+	static JCheckBox checkBoxCienciasHumanas = new JCheckBox("CiÃªncias Humanas e suas Tecnologias");
+	static JCheckBox checkBoxCienciasDaNatureza = new JCheckBox("CiÃªncias da Natureza e suas Tecnologias");
+	static JCheckBox checkBoxLinguagensECodigos = new JCheckBox("Linguagens, CÃ³digos e suas Tecnologias");
+	static JCheckBox checkBoxMatematica = new JCheckBox("MatemÃ¡tica e suas Tecnologias");
 	static JButton btnVoltarParaLogo = new JButton("Voltar");
-	static JButton btnAvancarParaNivel = new JButton("Avançar");
+	static JButton btnAvancarParaNivel = new JButton("AvanÃ§ar");
 	
 	static JPanel painelNivel = new JPanel();
-	static JLabel lEscritaNivel = new JLabel("Selecione o Nível das Questões:");
-	static JCheckBox checkBoxFacil = new JCheckBox("Fácil");
-	static JCheckBox checkBoxMedio = new JCheckBox("Médio");
-	static JCheckBox checkBoxDificil = new JCheckBox("Difícil");
+	static JLabel lEscritaNivel = new JLabel("Selecione o NÃ­vel das QuestÃµes:");
+	static JCheckBox checkBoxFacil = new JCheckBox("FÃ¡cil");
+	static JCheckBox checkBoxMedio = new JCheckBox("MÃ©dio");
+	static JCheckBox checkBoxDificil = new JCheckBox("DifÃ­cil");
 	static JButton btnVoltarParaMateria = new JButton("Voltar");
-	static JButton btnAvancarParaQuantidadeQuestao = new JButton("Avançar");
+	static JButton btnAvancarParaQuantidadeQuestao = new JButton("AvanÃ§ar");
 	
 	static JPanel painelQuantidade = new JPanel();
-	static JLabel lEscritaQuantidade = new JLabel("Selecione o Quantidade das Questões:");
+	static JLabel lEscritaQuantidade = new JLabel("Selecione o Quantidade das QuestÃµes:");
 	static JCheckBox checkBoxDez = new JCheckBox("10");
 	static JCheckBox checkBoxVinte = new JCheckBox("20");
 	static JCheckBox checkBoxTrinta = new JCheckBox("30");
@@ -53,7 +53,7 @@ public class Tela {
 	static JCheckBox checkBoxNoventa = new JCheckBox("90");
 
 	static JButton btnVoltarParaNivel = new JButton("Voltar");
-	static JButton btnAvancarParaProva = new JButton("Avançar");
+	static JButton btnAvancarParaProva = new JButton("AvanÃ§ar");
 
 	static Toolkit kit;
 	static Dimension tamanhoMonitor;
@@ -339,4 +339,32 @@ public class Tela {
 		new Tela();
 	}
 
+}
+
+class ConexaoBd {
+	private static final String LOGIN_BANCO_DE_DADOS = "login bd aqui";
+	private static final String SENHA_BANCO_DE_DADOS = "senha aqui";
+	private static final String URL_BANCO_DE_DADOS = "endereÃ§o do banco aqui";
+	
+	private Connection conexaoBd;
+	
+	public ConexaoBd() {
+		try {
+			conexaoBd = DriverManager.getConnection(URL_BANCO_DE_DADOS, LOGIN_BANCO_DE_DADOS, SENHA_BANCO_DE_DADOS);
+		} catch (SQLException e){
+			throw new RuntimeException("Falha ao conectar com o banco. Erro: ", e);
+		}
+	}
+	
+	public Connection obterConexao() {
+		return conexaoBd;
+	}
+	
+	public void fecharConexao() {
+		try {
+			conexaoBd.close();
+		} catch (SQLException e) {
+			throw new RuntimeException("Falha ao desconectar o banco. Erro: ", e);
+		}
+	}
 }
